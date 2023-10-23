@@ -17,7 +17,7 @@ public class PlayerUIManger : MonoBehaviour
 
     private void LateUpdate()
     {
-        _uiInfoP.text = $"Плотность:\n{_reservuar.FinishedProduct}";
+        _uiInfoP.text = $"Плотность:\n{_reservuar.LiquidComponent + _reservuar.SecondComponent}";
     }
 
     public void ActivateUIHelper(Command button)

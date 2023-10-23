@@ -16,7 +16,7 @@ public class ManipulatorMovementManager : Command
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private IEnumerator MoveDown()

@@ -8,7 +8,8 @@ enum QuestState
 {
     firstTask,
     secondTask, 
-    thirdTask
+    thirdTask,
+    complete
 }
 
 public class QuestGiveManager : Command
@@ -44,7 +45,8 @@ public class QuestGiveManager : Command
 
         if (_reservuar.FinishedProduct == _tasks.ThridTaskValue && _state == QuestState.thirdTask)
         {
-            Debug.Log("Finish");
+            _state = QuestState.complete;
+            SwitchStateTask();
         }
 
     }
@@ -61,6 +63,9 @@ public class QuestGiveManager : Command
                 break;
             case QuestState.thirdTask:
                 _playerUIManger._uiTask.text = _tasks.ThridTask;
+                break;
+            default:
+                _playerUIManger._uiTask.text = "Все задачи выполнены";
                 break;
         }
     }
