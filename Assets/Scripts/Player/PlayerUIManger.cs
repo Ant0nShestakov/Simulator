@@ -6,13 +6,13 @@ public class PlayerUIManger : MonoBehaviour
     [SerializeField] private Text _uiHelper;
     [SerializeField] private Text _uiInfoP;
 
-    private Germes _reservuar;
+    private Reservuar _reservuar;
 
     [field: SerializeField] public Text _uiTask { get; private set; }
 
     private void Start()
     {
-        _reservuar = Singelton<Germes>.Instance;
+        _reservuar = Singelton<Reservuar>.Instance;
     }
 
     private void LateUpdate()
@@ -28,7 +28,7 @@ public class PlayerUIManger : MonoBehaviour
             _uiHelper.text = "нажми Е чтобы запустить манипулятор";
         else if(button is PumpManager)
             _uiHelper.text = "нажми Е чтобы запустить насос";
-        else if (button is Germes)
+        else if (button is Reservuar)
             _uiHelper.text = "нажми Е чтобы запустить процесс смешивания";
         else if (button is Reactor)
             _uiHelper.text = "нажми Е чтобы запустить реактор";

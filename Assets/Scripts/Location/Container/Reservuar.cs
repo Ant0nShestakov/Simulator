@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Germes : AbstractReservuar
+public class Reservuar : AbstractReservuar
 {
     [SerializeField] private Reactor _reactor;
     [SerializeField] private float _totalP;
@@ -24,14 +24,10 @@ public class Germes : AbstractReservuar
     {
         if (P >= _totalP)
         {
-            SecondComponent -= _totalP;
-            FinishedProduct += 1;
-            _reactor.SecondComponent += FinishedProduct;
-        }
-        else
-        {
             SecondComponent = 0;
             LiquidComponent = 0;
+            FinishedProduct += 1;
+            _reactor.SecondComponent += FinishedProduct;
         }
     }
 
@@ -39,9 +35,7 @@ public class Germes : AbstractReservuar
     {
         if (!_isWork)
         {
-            Debug.Log("Start");
-
-            StartCoroutine(StartCooking(_time));
+            StartCoroutine(Cooking(_time));
             _isWork = true;
         }
     }

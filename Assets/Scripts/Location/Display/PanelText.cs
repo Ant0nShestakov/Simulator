@@ -13,12 +13,13 @@ public class PanelText : MonoBehaviour
     void Start()
     {
         _textOnObject = GetComponentInChildren<TextMeshPro>();
+        _arrayProperties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        _arrayProperties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
+        
         _textOnObject.text = $"{_arrayProperties[_index]}";
     }
 }

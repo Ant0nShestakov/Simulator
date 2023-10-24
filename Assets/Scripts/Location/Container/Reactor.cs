@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Reactor : AbstractReservuar
@@ -29,7 +28,7 @@ public class Reactor : AbstractReservuar
         {
             Debug.Log("Start");
 
-            StartCoroutine(StartCooking(_time));
+            StartCoroutine(Cooking(_time));
             _isWork = true;
         }
     }

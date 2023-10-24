@@ -5,7 +5,7 @@ public class Conveyor : Command
 {
     [SerializeField] private float _dose;
     [SerializeField] private float _time;
-    [SerializeField] private Germes _germes;
+    [SerializeField] private Reservuar _germes;
 
     public float Value { get; set; } = 0;
 

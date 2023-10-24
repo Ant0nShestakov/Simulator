@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-
-enum QuestState
+public enum QuestState
 {
     firstTask,
     secondTask, 
@@ -14,15 +10,13 @@ enum QuestState
 
 public class QuestGiveManager : Command
 {
-    
     [SerializeField] private AbstractReservuar _reservuar;
     [SerializeField] private PlayerUIManger _playerUIManger;
 
-    private QuestState _state;
     private Animator _animator;
 
     [field: SerializeField] public LvLTask _tasks { get; private set; }
-
+    public QuestState State { get; private set; }
 
     private void Start()
     {
@@ -31,29 +25,26 @@ public class QuestGiveManager : Command
 
     private void Update()
     {
-        if (_reservuar.LiquidComponent == _tasks.FirstTaskValue && _state == QuestState.firstTask)
+        if (_reservuar.LiquidComponent == _tasks.FirstTaskValue && State == QuestState.firstTask)
         {
-            _state = QuestState.secondTask;
+            State = QuestState.secondTask;
             SwitchStateTask();
         }
-
-        if (_reservuar.SecondComponent == _tasks.SecondTaskValue && _state == QuestState.secondTask)
+        if (_reservuar.SecondComponent == _tasks.SecondTaskValue && State == QuestState.secondTask)
         {
-            _state = QuestState.thirdTask;
+            State = QuestState.thirdTask;
             SwitchStateTask();
         }
-
-        if (_reservuar.FinishedProduct == _tasks.ThridTaskValue && _state == QuestState.thirdTask)
+        if (_reservuar.FinishedProduct == _tasks.ThridTaskValue && State == QuestState.thirdTask)
         {
-            _state = QuestState.complete;
+            State = QuestState.complete;
             SwitchStateTask();
         }
-
     }
 
     private void SwitchStateTask()
     {
-        switch (_state)
+        switch (State)
         {
             case QuestState.firstTask:
                 _playerUIManger._uiTask.text = _tasks.FirstTask;
@@ -71,16 +62,13 @@ public class QuestGiveManager : Command
     }
 
 
-    public void SetDanceAnimation()
-    {
-        _animator.SetTrigger("ThisDanceDude");
-    }
+    public void SetDanceAnimation() => _animator.SetTrigger("ThisDanceDude");
 
     public override void Run()
     {
-        if(_state == 0)
+        if(State == 0)
         {
-            _state = QuestState.firstTask;
+            State = QuestState.firstTask;
             SwitchStateTask();
         }
     }

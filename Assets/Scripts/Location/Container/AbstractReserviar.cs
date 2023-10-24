@@ -9,7 +9,7 @@ public abstract class AbstractReservuar : Command
 
     protected abstract void Loading();
 
-    protected IEnumerator StartCooking(float time)
+    protected IEnumerator Cooking(float time)
     {
         while (SecondComponent > 0)
         {
