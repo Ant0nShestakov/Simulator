@@ -8,7 +8,7 @@ public enum QuestState
     complete
 }
 
-public class QuestGiveManager : Command
+public class QuestGiveManager : MonoBehaviour
 {
     [SerializeField] private AbstractReservuar _reservuar;
     [SerializeField] private PlayerUIManger _playerUIManger;
@@ -61,10 +61,9 @@ public class QuestGiveManager : Command
         }
     }
 
-
     public void SetDanceAnimation() => _animator.SetTrigger("ThisDanceDude");
 
-    public override void Run()
+    public void StartTask()
     {
         if(State == 0)
         {

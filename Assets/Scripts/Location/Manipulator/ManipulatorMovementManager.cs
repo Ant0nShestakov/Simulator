@@ -1,18 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-//Прибраться
 public class ManipulatorMovementManager : Command
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _value = 100;
     [SerializeField] Transform _moveTransform;
-
 
     private Animator _animator;
     private bool isCollisionDown;
     private bool isCollisionLeft;
     private bool isStart;
+
+    [field: SerializeField] public override float Value { get; set; } = 100;
 
     private void Start()
     {
@@ -57,14 +56,30 @@ public class ManipulatorMovementManager : Command
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Container>(out Container component))
+        if(other.TryGetComponent<Command>(out Command component))
         {
             _animator.SetTrigger("Grab");
-            component.Value -= _value;
+            if(component is Container)
+                component.Value -= this.Value;
+            else if(component is Conveyor) 
+            {
+                Debug.Log("This conveyor");
+                component.Value += this.Value;
+                component.Run();
+            }
             isCollisionDown = true;
             StopCoroutine(MoveDown());
             return;
         }
+
+        //if (other.TryGetComponent<Container>(out Container component))
+        //{
+        //    _animator.SetTrigger("Grab");
+        //    component.Value -= Value;
+        //    isCollisionDown = true;
+        //    StopCoroutine(MoveDown());
+        //    return;
+        //}
 
         if (other.gameObject.CompareTag("RightTriggerY") && isCollisionDown)
         {
@@ -86,15 +101,15 @@ public class ManipulatorMovementManager : Command
             return;
         }
 
-        if (other.TryGetComponent<Conveyor>(out Conveyor conveyor))
-        {
-            _animator.SetTrigger("Grab");
-            conveyor.Value += _value;
-            conveyor.Run();
-            isCollisionDown = true;
-            StopCoroutine(MoveDown());
-            return;
-        }
+        //if (other.TryGetComponent<Conveyor>(out Conveyor conveyor))
+        //{
+        //    _animator.SetTrigger("Grab");
+        //    conveyor.Value += Value;
+        //    conveyor.Run();
+        //    isCollisionDown = true;
+        //    StopCoroutine(MoveDown());
+        //    return;
+        //}
 
         if (other.gameObject.CompareTag("LeftTriggerY") && isCollisionDown)
         {

@@ -34,7 +34,7 @@ public class PlayerInteractionManager : MonoBehaviour
                 if (Input.GetKey(KeyCode.E))
                 {
                     _playerDialogsManager.StartDialog();
-                    questGiver.Run();
+                    questGiver.StartTask();
                 }
                 if (Input.GetKey(KeyCode.F))
                     questGiver.SetDanceAnimation();

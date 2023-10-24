@@ -7,7 +7,7 @@ public class Conveyor : Command
     [SerializeField] private float _time;
     [SerializeField] private Reservuar _germes;
 
-    public float Value { get; set; } = 0;
+    public override float Value { get; set; } = 0;
 
     private void Loading()
     {

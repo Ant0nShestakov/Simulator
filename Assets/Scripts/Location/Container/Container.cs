@@ -1,6 +1,8 @@
-public class Container : Command
+using UnityEngine;
+
+public class Container: Command
 {
-    public float Value { get; set; } = 1000;
+    public override float Value { get; set; } = 1000;
 
     public override void Run()
     {

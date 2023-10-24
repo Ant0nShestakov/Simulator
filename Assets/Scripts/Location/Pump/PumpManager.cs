@@ -4,10 +4,11 @@ using UnityEngine;
 public class PumpManager : Command
 {
     [SerializeField] private AbstractReservuar _pumpingObject;
-    [SerializeField] private float _mass;
-
+    [SerializeField] private float _time;
     private bool _isPumping;
     private bool _isWorking;
+
+    [field: SerializeField] public override float Value { get; set; }
 
     private void Update()
     {
@@ -22,8 +23,8 @@ public class PumpManager : Command
     {
         while (_isPumping)
         {
-            _pumpingObject.LiquidComponent += _mass;
-            yield return new WaitForSecondsRealtime(1);
+            _pumpingObject.LiquidComponent += Value;
+            yield return new WaitForSecondsRealtime(_time);
         }
         _isWorking = false;
     }

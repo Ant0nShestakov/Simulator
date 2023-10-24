@@ -7,6 +7,8 @@ public abstract class AbstractReservuar : Command
     public abstract float SecondComponent { get; set; }
     public abstract float FinishedProduct { get; set; }
 
+    public sealed override float Value { get; set; }
+
     protected abstract void Loading();
 
     protected IEnumerator Cooking(float time)

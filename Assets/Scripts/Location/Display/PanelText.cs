@@ -7,19 +7,18 @@ public class PanelText : MonoBehaviour
     [SerializeField] private int _index;
 
     private TextMeshPro _textOnObject;
-    private float[] _arrayProperties;
+    private float[] _properties;
 
     // Start is called before the first frame update
     void Start()
     {
         _textOnObject = GetComponentInChildren<TextMeshPro>();
-        _arrayProperties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        
-        _textOnObject.text = $"{_arrayProperties[_index]}";
+        _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
+        _textOnObject.text = $"{_properties[_index]}";
     }
 }
