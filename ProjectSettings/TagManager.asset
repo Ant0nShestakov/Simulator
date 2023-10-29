@@ -8,6 +8,10 @@ TagManager:
   - Container
   - LeftManipulatorTrigger
   - RightManipulatorTrigger
+  - RightTriggerY
+  - LeftTriggerX
+  - RightTriggerX
+  - LeftTriggerY
   layers:
   - Default
   - TransparentFX

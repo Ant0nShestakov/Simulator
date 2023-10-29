@@ -7,7 +7,7 @@ public class PlayerInteractionManager : MonoBehaviour
     private PlayerUIManger _playerUIManger;
     private PlayerDialogsManager _playerDialogsManager;
     private Camera _camera;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +33,8 @@ public class PlayerInteractionManager : MonoBehaviour
                 _playerUIManger.ActivateUIHelper();
                 if (Input.GetKey(KeyCode.E))
                 {
-                    _playerDialogsManager.StartDialog();
                     questGiver.StartTask();
+                    _playerDialogsManager.StartDialog();
                 }
                 if (Input.GetKey(KeyCode.F))
                     questGiver.SetDanceAnimation();

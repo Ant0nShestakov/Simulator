@@ -35,6 +35,15 @@ public class PlayerDialogsManager : MonoBehaviour
             case QuestState.thirdTask:
                 _textTask = _tasks.ThridTaskDialog;
                 break;
+            case QuestState.foutrhTask:
+                _textTask = _tasks.FourthTaskDialog;
+                break;
+            case QuestState.fiveTask:
+                _textTask = _tasks.FiveTaskDialog;
+                break;
+            case QuestState.sixTask:
+                _textTask = _tasks.SixTaskDialog;
+                break;
             default:
                 _textTask = "Все задачи выполнены";
                 break;

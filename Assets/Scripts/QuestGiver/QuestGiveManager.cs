@@ -5,12 +5,16 @@ public enum QuestState
     firstTask,
     secondTask, 
     thirdTask,
+    foutrhTask,
+    fiveTask,
+    sixTask,
     complete
 }
 
 public class QuestGiveManager : MonoBehaviour
 {
-    [SerializeField] private AbstractReservuar _reservuar;
+    [SerializeField] private Reservuar _reservuar;
+    [SerializeField] private Reactor _reactor;
     [SerializeField] private PlayerUIManger _playerUIManger;
 
     private Animator _animator;
@@ -23,26 +27,43 @@ public class QuestGiveManager : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void SwitchStateTask()
     {
         if (_reservuar.LiquidComponent == _tasks.FirstTaskValue && State == QuestState.firstTask)
         {
             State = QuestState.secondTask;
-            SwitchStateTask();
+            return;
         }
         if (_reservuar.SecondComponent == _tasks.SecondTaskValue && State == QuestState.secondTask)
         {
             State = QuestState.thirdTask;
-            SwitchStateTask();
+            return;
         }
         if (_reservuar.FinishedProduct == _tasks.ThridTaskValue && State == QuestState.thirdTask)
         {
-            State = QuestState.complete;
-            SwitchStateTask();
+            State = QuestState.foutrhTask;
+            return;
         }
+        if (_reactor.SecondComponent == _tasks.FourthTaskValue && State == QuestState.foutrhTask) 
+        {
+            State = QuestState.fiveTask;
+            return;
+        }
+        if (_reactor.LiquidComponent == _tasks.FiveTaskValue && State == QuestState.fiveTask)
+        {
+            State = QuestState.sixTask;
+            return;
+        }
+
+        if (_reactor.FinishedProduct == _tasks.SixTaskValue && State == QuestState.sixTask)
+        {
+            State = QuestState.complete;
+            return;
+        }
+
     }
 
-    private void SwitchStateTask()
+    private void SwitchTask()
     {
         switch (State)
         {
@@ -55,6 +76,15 @@ public class QuestGiveManager : MonoBehaviour
             case QuestState.thirdTask:
                 _playerUIManger._uiTask.text = _tasks.ThridTask;
                 break;
+            case QuestState.foutrhTask:
+                _playerUIManger._uiTask.text = _tasks.FourthTask;
+                break;
+            case QuestState.fiveTask:
+                _playerUIManger._uiTask.text = _tasks.FiveTask;
+                break;
+            case QuestState.sixTask:
+                _playerUIManger._uiTask.text = _tasks.SixTask;
+                break;
             default:
                 _playerUIManger._uiTask.text = "Все задачи выполнены";
                 break;
@@ -65,10 +95,7 @@ public class QuestGiveManager : MonoBehaviour
 
     public void StartTask()
     {
-        if(State == 0)
-        {
-            State = QuestState.firstTask;
-            SwitchStateTask();
-        }
+        SwitchStateTask();
+        SwitchTask();
     }
 }

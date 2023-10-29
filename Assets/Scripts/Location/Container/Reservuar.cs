@@ -22,19 +22,18 @@ public class Reservuar : AbstractReservuar
 
     protected override void Loading()
     {
-        if (P >= _totalP)
-        {
-            SecondComponent = 0;
-            LiquidComponent = 0;
-            FinishedProduct += 1;
-            _reactor.SecondComponent += FinishedProduct;
-        }
+        SecondComponent = 0;
+        LiquidComponent = 0;
+        FinishedProduct += 1;
+        _reactor.SecondComponent += FinishedProduct;
+        _isWork = false;
     }
 
     public override void Run()
     {
-        if (!_isWork)
+        if (!_isWork && P >= _totalP)
         {
+            Debug.Log("Start");
             StartCoroutine(Cooking(_time));
             _isWork = true;
         }
