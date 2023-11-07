@@ -29,33 +29,33 @@ public class QuestGiveManager : MonoBehaviour
 
     private void SwitchStateTask()
     {
-        if (_reservuar.LiquidComponent == _tasks.FirstTaskValue && State == QuestState.firstTask)
+        if (_reservuar.LiquidComponent >= _tasks.FirstTaskValue && State == QuestState.firstTask)
         {
             State = QuestState.secondTask;
             return;
         }
-        if (_reservuar.SecondComponent == _tasks.SecondTaskValue && State == QuestState.secondTask)
+        if (_reservuar.SecondComponent >= _tasks.SecondTaskValue && State == QuestState.secondTask)
         {
             State = QuestState.thirdTask;
             return;
         }
-        if (_reservuar.FinishedProduct == _tasks.ThridTaskValue && State == QuestState.thirdTask)
+        if (_reactor.SecondComponent >= _tasks.ThridTaskValue && State == QuestState.thirdTask)
         {
             State = QuestState.foutrhTask;
             return;
         }
-        if (_reactor.SecondComponent == _tasks.FourthTaskValue && State == QuestState.foutrhTask) 
+        if (_reactor.SecondComponent >= _tasks.FourthTaskValue && State == QuestState.foutrhTask) 
         {
             State = QuestState.fiveTask;
             return;
         }
-        if (_reactor.LiquidComponent == _tasks.FiveTaskValue && State == QuestState.fiveTask)
+        if (_reactor.LiquidComponent >= _tasks.FiveTaskValue && State == QuestState.fiveTask)
         {
             State = QuestState.sixTask;
             return;
         }
 
-        if (_reactor.FinishedProduct == _tasks.SixTaskValue && State == QuestState.sixTask)
+        if (_reactor.FinishedProduct >= _tasks.SixTaskValue && State == QuestState.sixTask)
         {
             State = QuestState.complete;
             return;

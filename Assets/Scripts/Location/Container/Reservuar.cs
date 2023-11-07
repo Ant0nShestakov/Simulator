@@ -27,6 +27,7 @@ public class Reservuar : AbstractReservuar
         FinishedProduct += 1;
         _reactor.SecondComponent += FinishedProduct;
         _isWork = false;
+        FinishedProduct = 0;
     }
 
     public override void Run()

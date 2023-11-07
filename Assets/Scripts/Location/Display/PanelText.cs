@@ -5,6 +5,7 @@ public class PanelText : MonoBehaviour
 {
     [SerializeField] private AbstractReservuar _container;
     [SerializeField] private int _index;
+    [SerializeField] private string _name;
 
     private TextMeshPro _textOnObject;
     private float[] _properties;
@@ -19,6 +20,6 @@ public class PanelText : MonoBehaviour
     void LateUpdate()
     {
         _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
-        _textOnObject.text = $"{_properties[_index]}";
+        _textOnObject.text = $"{_name}: {_properties[_index]}";
     }
 }

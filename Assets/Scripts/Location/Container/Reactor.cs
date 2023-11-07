@@ -14,11 +14,13 @@ public class Reactor : AbstractReservuar
     // Update is called once per frame
     private void Update()
     {
-        FinishedProduct = SecondComponent + LiquidComponent;
     }
 
     protected override void Loading()
     {
+        FinishedProduct += 1;
+        LiquidComponent = 0;
+        SecondComponent = 0;
         Debug.Log("Reactor");
     }
 
