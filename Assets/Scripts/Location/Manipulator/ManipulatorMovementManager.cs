@@ -13,7 +13,7 @@ public class ManipulatorMovementManager : Command
 
     [field: SerializeField] public override float Value { get; set; } = 100;
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
     }
@@ -56,7 +56,7 @@ public class ManipulatorMovementManager : Command
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<Command>(out Command component))
+        if (other.TryGetComponent<Command>(out Command component))
         {
             _animator.SetTrigger("Grab");
             if(component is Container)
@@ -65,21 +65,12 @@ public class ManipulatorMovementManager : Command
             {
                 Debug.Log("This conveyor");
                 component.Value += this.Value;
-                component.Run();
+                UpdateOnDisplays();
             }
             isCollisionDown = true;
             StopCoroutine(MoveDown());
             return;
         }
-
-        //if (other.TryGetComponent<Container>(out Container component))
-        //{
-        //    _animator.SetTrigger("Grab");
-        //    component.Value -= Value;
-        //    isCollisionDown = true;
-        //    StopCoroutine(MoveDown());
-        //    return;
-        //}
 
         if (other.gameObject.CompareTag("RightTriggerY") && isCollisionDown)
         {
@@ -100,16 +91,6 @@ public class ManipulatorMovementManager : Command
             StartCoroutine(MoveDown());
             return;
         }
-
-        //if (other.TryGetComponent<Conveyor>(out Conveyor conveyor))
-        //{
-        //    _animator.SetTrigger("Grab");
-        //    conveyor.Value += Value;
-        //    conveyor.Run();
-        //    isCollisionDown = true;
-        //    StopCoroutine(MoveDown());
-        //    return;
-        //}
 
         if (other.gameObject.CompareTag("LeftTriggerY") && isCollisionDown)
         {
@@ -145,7 +126,6 @@ public class ManipulatorMovementManager : Command
     {
         if (AnimationName == null)
             return false;
-
         var check = _animator.GetCurrentAnimatorStateInfo(0);
         return check.IsName(AnimationName);
     }

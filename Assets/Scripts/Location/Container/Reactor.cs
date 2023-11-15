@@ -29,7 +29,6 @@ public class Reactor : AbstractReservuar
         if (!_isWork)
         {
             Debug.Log("Start");
-
             StartCoroutine(Cooking(_time));
             _isWork = true;
         }

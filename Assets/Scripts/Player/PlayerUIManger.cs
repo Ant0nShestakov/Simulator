@@ -23,7 +23,6 @@ public class PlayerUIManger : MonoBehaviour
     public void ActivateUIHelper(Command button)
     {
         _uiHelper.gameObject.SetActive(true);
-
         if (button is ManipulatorMovementManager)
             _uiHelper.text = "нажми Е чтобы запустить манипулятор";
         else if(button is PumpManager)
@@ -32,6 +31,8 @@ public class PlayerUIManger : MonoBehaviour
             _uiHelper.text = "нажми Е чтобы запустить процесс смешивания";
         else if (button is Reactor)
             _uiHelper.text = "нажми Е чтобы запустить реактор";
+        else if (button is Conveyor)
+            _uiHelper.text = "нажми Е чтобы запустить конвейер";
     }
 
     public void ActivateUIHelper()

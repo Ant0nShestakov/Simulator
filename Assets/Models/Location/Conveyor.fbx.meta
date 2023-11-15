@@ -1,12 +1,32 @@
 fileFormatVersion: 2
-guid: 18984d247f550c54b95b8e6a65e20c07
+guid: 812c4279dfc105b44a70280c3fc60ed9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Alum
+    second: {fileID: 2100000, guid: d632b8dff443c3f4e9f5a649b2b161c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 759ef0220acd32e45964890b38e303bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gray
+    second: {fileID: 2100000, guid: 759ef0220acd32e45964890b38e303bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 759ef0220acd32e45964890b38e303bf, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:

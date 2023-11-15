@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Conveyor : Command
@@ -6,6 +7,8 @@ public class Conveyor : Command
     [SerializeField] private float _dose;
     [SerializeField] private float _time;
     [SerializeField] private Reservuar _germes;
+
+    private bool _isStart;
 
     public override float Value { get; set; } = 0;
 
@@ -23,14 +26,23 @@ public class Conveyor : Command
         }
     }
 
-    private IEnumerator LoadToGermes()
+    private IEnumerator LoadToReservuar()
     {
         while (Value > 0 )
         {
             yield return new WaitForSecondsRealtime(_time);
+            Debug.Log("UP");
             Loading();
+            UpdateOnDisplays();
         }
     }
 
-    public override void Run()  => StartCoroutine(LoadToGermes());
+    public override void Run()
+    {
+        if (!_isStart)
+        {
+            StartCoroutine(LoadToReservuar());
+            _isStart = true;
+        }
+    }
 }

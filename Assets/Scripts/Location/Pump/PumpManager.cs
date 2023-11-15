@@ -24,6 +24,7 @@ public class PumpManager : Command
         while (_isPumping)
         {
             _pumpingObject.LiquidComponent += Value;
+            UpdateOnDisplays();
             yield return new WaitForSecondsRealtime(_time);
         }
         _isWorking = false;

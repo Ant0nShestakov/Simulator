@@ -9,17 +9,30 @@ public class PanelText : MonoBehaviour
 
     private TextMeshPro _textOnObject;
     private float[] _properties;
+    private Conveyor _conveyor;
 
     // Start is called before the first frame update
     void Start()
     {
         _textOnObject = GetComponentInChildren<TextMeshPro>();
+        _conveyor = Singelton<Conveyor>.Instance;
+        UpdateInfo();
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    public void UpdateInfo() 
     {
-        _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
-        _textOnObject.text = $"{_name}: {_properties[_index]}";
+        if (_container == null)
+            _textOnObject.text = $"{_name}: {_conveyor.Value}";
+        else
+        {
+            _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
+            _textOnObject.text = $"{_name}: {_properties[_index]}";
+        }
     }
+
+    //void LateUpdate()
+    //{
+    //    _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
+    //    _textOnObject.text = $"{_name}: {_properties[_index]}";
+    //}
 }

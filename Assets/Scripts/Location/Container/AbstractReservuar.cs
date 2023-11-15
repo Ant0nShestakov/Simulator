@@ -17,6 +17,7 @@ public abstract class AbstractReservuar : Command
         {
             yield return new WaitForSecondsRealtime(time);
             Loading();
+            UpdateOnDisplays();
         }
     }
 }
