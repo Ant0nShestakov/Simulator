@@ -26,9 +26,9 @@ public class PlayerInteractionManager : MonoBehaviour
             {
                 _playerUIManger.ActivateUIHelper(ex.Command);
                 if (Input.GetKey(KeyCode.E))
-                {
                     ex.Executing();
-                }
+                else if (Input.GetKey(KeyCode.R))
+                    ex.Switching();
             }
             else if(hit.collider.TryGetComponent<QuestGiveManager>(out QuestGiveManager questGiver))
             {

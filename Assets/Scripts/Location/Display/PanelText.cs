@@ -15,14 +15,17 @@ public class PanelText : MonoBehaviour
     void Start()
     {
         _textOnObject = GetComponentInChildren<TextMeshPro>();
-        _conveyor = Singelton<Conveyor>.Instance;
         UpdateInfo();
     }
 
     public void UpdateInfo() 
     {
         if (_container == null)
+        {
+            if(_conveyor == null)
+                _conveyor = Singelton<Conveyor>.Instance;
             _textOnObject.text = $"{_name}: {_conveyor.Value}";
+        }
         else
         {
             _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };

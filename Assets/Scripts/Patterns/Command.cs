@@ -10,7 +10,6 @@ public abstract class Command : MonoBehaviour
     }
 
     public abstract float Value { get; set; }
-    public abstract void Run();
 
     protected void UpdateOnDisplays()
     {
@@ -19,4 +18,7 @@ public abstract class Command : MonoBehaviour
             panelText.UpdateInfo();
         }
     }
+
+    public virtual void Switch() { }
+    public abstract void Run();
 }

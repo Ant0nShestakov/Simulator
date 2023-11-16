@@ -463,7 +463,6 @@ GameObject:
   - component: {fileID: 5187741549438222477}
   - component: {fileID: 4993870320796338551}
   - component: {fileID: 3375483660620154239}
-  - component: {fileID: 8310361667763982276}
   m_Layer: 0
   m_Name: Executing Germes
   m_TagString: Untagged
@@ -570,27 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Command>k__BackingField: {fileID: 0}
---- !u!95 &8310361667763982276
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378231596422610333}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2183066467107244692
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 0}
   _index: 1
+  _name: 
 --- !u!1 &4727225302180011980
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 0}
   _index: 0
+  _name: 
 --- !u!1 &6138992331803516601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 0}
   _index: 2
+  _name: 
 --- !u!1 &8443044436812518985
 GameObject:
   m_ObjectHideFlags: 0
