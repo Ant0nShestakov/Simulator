@@ -5,6 +5,8 @@ public class Reactor : AbstractReservuar
     [SerializeField] private float _time;
     private bool _isWork;
 
+    [field: SerializeField] public override string Name { get; set; }
+
     [field: SerializeField] public override float LiquidComponent { get; set; } = 1;
 
     [field: SerializeField] public override float SecondComponent { get; set; }

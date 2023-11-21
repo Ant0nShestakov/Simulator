@@ -28,7 +28,7 @@ public class PlayerUIManger : MonoBehaviour
         else if(button is PumpManager)
             _uiHelper.text = "нажми Е чтобы запустить насос";
         else if (button is Reservuar)
-            _uiHelper.text = "нажми Е чтобы запустить процесс смешивания";
+            _uiHelper.text = "нажми Е чтобы запустить процесс смешивания\nнажми R чтобы сменить реактор";
         else if (button is Reactor)
             _uiHelper.text = "нажми Е чтобы запустить реактор";
         else if (button is Conveyor)

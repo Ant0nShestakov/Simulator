@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public abstract class AbstractReservuar : Command
-{
+{   
+    public abstract string Name { get; set; }
     public abstract float LiquidComponent { get; set; }
     public abstract float SecondComponent { get; set; }
     public abstract float FinishedProduct { get; set; }

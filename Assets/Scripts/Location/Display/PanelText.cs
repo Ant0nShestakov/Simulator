@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class PanelText : MonoBehaviour
 {
-    [SerializeField] private AbstractReservuar _container;
     [SerializeField] private int _index;
     [SerializeField] private string _name;
-
+    
     private TextMeshPro _textOnObject;
     private float[] _properties;
     private Conveyor _conveyor;
+
+    [field: SerializeField] public AbstractReservuar Container { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class PanelText : MonoBehaviour
 
     public void UpdateInfo() 
     {
-        if (_container == null)
+        if (Container == null)
         {
             if(_conveyor == null)
                 _conveyor = Singelton<Conveyor>.Instance;
@@ -28,14 +29,8 @@ public class PanelText : MonoBehaviour
         }
         else
         {
-            _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
-            _textOnObject.text = $"{_name}: {_properties[_index]}";
+            _properties = new[] { Container.LiquidComponent, Container.SecondComponent, Container.FinishedProduct };
+            _textOnObject.text = $"{Container.Name}\n({_name}): {_properties[_index]}";
         }
     }
-
-    //void LateUpdate()
-    //{
-    //    _properties = new[] { _container.LiquidComponent, _container.SecondComponent, _container.FinishedProduct };
-    //    _textOnObject.text = $"{_name}: {_properties[_index]}";
-    //}
 }

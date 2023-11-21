@@ -35,6 +35,7 @@ public class Conveyor : Command
             Loading();
             UpdateOnDisplays();
         }
+        _isStart = false;
     }
 
     public override void Run()
