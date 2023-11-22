@@ -7,14 +7,21 @@ public class PumpManager : Command
     [SerializeField] private float _time;
     private bool _isPumping;
     private bool _isWorking;
+    private AudioManager _audioManager;
 
     [field: SerializeField] public override float Value { get; set; }
 
+    private void Awake()
+    {
+        _audioManager = GetComponent<AudioManager>();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && _isPumping)
         {
             _isPumping = false;
+            _audioManager.Stop();
             StopCoroutine(Pumping());
         }
     }
@@ -23,9 +30,10 @@ public class PumpManager : Command
     {
         while (_isPumping)
         {
+            _audioManager.Play();
+            yield return new WaitForSecondsRealtime(_time);
             _pumpingObject.LiquidComponent += Value;
             UpdateOnDisplays();
-            yield return new WaitForSecondsRealtime(_time);
         }
         _isWorking = false;
     }

@@ -4,12 +4,12 @@ public abstract class Command : MonoBehaviour
 {
     protected PanelText[] panelsText;
 
+    public abstract float Value { get; set; }
+
     private void Start()
     {
         panelsText = FindObjectsOfType<PanelText>();
     }
-
-    public abstract float Value { get; set; }
 
     protected void UpdateOnDisplays()
     {
@@ -20,5 +20,6 @@ public abstract class Command : MonoBehaviour
     }
 
     public virtual void Switch() { }
+
     public abstract void Run();
 }
