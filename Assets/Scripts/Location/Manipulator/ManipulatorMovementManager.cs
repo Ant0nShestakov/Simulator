@@ -7,6 +7,7 @@ public class ManipulatorMovementManager : Command
     [SerializeField] Transform _moveTransform;
 
     private Animator _animator;
+    private AudioManager _audioManager;
     private bool isCollisionDown;
     private bool isCollisionLeft;
     private bool isStart;
@@ -16,6 +17,7 @@ public class ManipulatorMovementManager : Command
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+        _audioManager = GetComponentInChildren<AudioManager>();
     }
 
     private IEnumerator MoveDown()
@@ -106,7 +108,7 @@ public class ManipulatorMovementManager : Command
         {
             isCollisionLeft = false;
             StopCoroutine(MoveRight());
-
+            _audioManager.Stop();
             isStart = false;
             return;
         }
@@ -135,6 +137,7 @@ public class ManipulatorMovementManager : Command
         if (!isStart)
         {
             StartCoroutine(MoveDown());
+            _audioManager.Play();
             isStart = true;
         }
     }
