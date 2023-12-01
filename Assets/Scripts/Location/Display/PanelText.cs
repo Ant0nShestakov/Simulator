@@ -5,18 +5,27 @@ public class PanelText : MonoBehaviour
 {
     [SerializeField] private int _index;
     [SerializeField] private string _name;
+    [SerializeField] private ErrorsOnLocation _errorOnLocation;
     
     private TextMeshPro _textOnObject;
-    private float[] _properties;
     private Conveyor _conveyor;
+    private float[] _properties;
 
     [field: SerializeField] public AbstractReservuar Container { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _textOnObject = GetComponentInChildren<TextMeshPro>();
         UpdateInfo();
+    }
+
+    public void SetErrorStateOnDisplay(int indexOfError)
+    {
+        if (indexOfError > _errorOnLocation.Erros.Length - 1)
+            return;
+        Debug.Log("Y");
+        _textOnObject.text = _errorOnLocation.Erros[indexOfError];
     }
 
     public void UpdateInfo() 

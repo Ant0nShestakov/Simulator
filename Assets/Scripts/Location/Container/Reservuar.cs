@@ -1,20 +1,20 @@
-using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class Reservuar : AbstractReservuar
 {
     [SerializeField] private Reactor[] _reactor;
     [SerializeField] private float _totalP;
-    [SerializeField] private float _time;
+    [SerializeField] private float _waitTimeToWork;
     [SerializeField] private PanelText _panelText;
+    [SerializeField] private float _timeToSwitch;
+
+    private AudioManager _audioManager;
+    private Reactor _currentReactor;
 
     private bool _isWork;
     private bool _isSwitch;
     private float P;
-
-    private Reactor _currentReactor;
 
     [field: SerializeField] public override string Name{ get; set; }
     [field: SerializeField] public override float LiquidComponent { get; set; } 
@@ -24,6 +24,7 @@ public class Reservuar : AbstractReservuar
     private void Awake()
     {
         _currentReactor = _reactor[0];
+        _audioManager = GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -31,18 +32,9 @@ public class Reservuar : AbstractReservuar
         P = LiquidComponent + SecondComponent;
     }
 
-    protected override void Loading()
-    {
-        SecondComponent = 0;
-        LiquidComponent = 0;
-        _currentReactor.SecondComponent += 1;
-        _isWork = false;
-        UpdateOnDisplays();
-    }
-
     private IEnumerator SwitchReactor()
     {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(_timeToSwitch);
         while (_isSwitch)
         {
             if (_currentReactor == _reactor[0])
@@ -62,6 +54,19 @@ public class Reservuar : AbstractReservuar
         }
     }
 
+    protected override void StartAudio() => _audioManager.Play();
+
+    protected override void StopAudio() => _audioManager.Stop();
+
+    protected override void Loading()
+    {
+        SecondComponent = 0;
+        LiquidComponent = 0;
+        _currentReactor.SecondComponent += 1;
+        _isWork = false;
+        UpdateOnDisplays();
+    }
+
     public override void Switch()
     {
         if (!_isSwitch)
@@ -75,8 +80,8 @@ public class Reservuar : AbstractReservuar
     {
         if (!_isWork && P >= _totalP)
         {
-            Debug.Log("Start");
-            StartCoroutine(Cooking(_time));
+            StartAudio();
+            StartCoroutine(Cooking(_waitTimeToWork));
             _isWork = true;
         }
     }

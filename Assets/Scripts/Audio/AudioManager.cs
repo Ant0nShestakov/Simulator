@@ -3,28 +3,36 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _audioClips;
-    private AudioSource _audioSource;
-    private bool _isPlaying;
 
-    void Start()
+    private AudioSource _audioSource;
+
+    private void Start() => _audioSource = GetComponent<AudioSource>();
+
+    private void SwitchAndPlayClip(AudioClip clip)
     {
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 
     public void Play()
     {
-        if (!_isPlaying)
+        if (_audioClips.Length == 0)
+            return;
+
+        if (!_audioSource.isPlaying)
         {
-            _audioSource.PlayOneShot(_audioClips[0]);
-            _audioSource.PlayOneShot(_audioClips[1]);
-            _isPlaying = true;
+            SwitchAndPlayClip(_audioClips[0]);
+            if (_audioClips.Length > 1)
+                SwitchAndPlayClip(_audioClips[1]);
         }    
     }
 
     public void Stop()
     {
-        _audioSource.Stop();
-        _audioSource.PlayOneShot(_audioClips[2]);
-        _isPlaying = false;
+        if (_audioClips.Length == 0)
+            return;
+
+        if (_audioClips.Length > 2)
+            SwitchAndPlayClip(_audioClips[2]);
     }
 }

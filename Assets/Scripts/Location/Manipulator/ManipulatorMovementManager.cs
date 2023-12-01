@@ -4,10 +4,11 @@ using UnityEngine;
 public class ManipulatorMovementManager : Command
 {
     [SerializeField] private float _speed;
-    [SerializeField] Transform _moveTransform;
+    [SerializeField] private Transform _moveTransform;
 
     private Animator _animator;
     private AudioManager _audioManager;
+
     private bool isCollisionDown;
     private bool isCollisionLeft;
     private bool isStart;
@@ -60,17 +61,16 @@ public class ManipulatorMovementManager : Command
     {
         if (other.TryGetComponent<Command>(out Command component))
         {
-            _animator.SetTrigger("Grab");
             if(component is Container)
                 component.Value -= this.Value;
             else if(component is Conveyor) 
             {
-                Debug.Log("This conveyor");
                 component.Value += this.Value;
                 UpdateOnDisplays();
             }
             isCollisionDown = true;
             StopCoroutine(MoveDown());
+            _animator.SetTrigger("Grab");
             return;
         }
 

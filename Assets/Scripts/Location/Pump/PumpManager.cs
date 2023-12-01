@@ -4,7 +4,9 @@ using UnityEngine;
 public class PumpManager : Command
 {
     [SerializeField] private AbstractReservuar _pumpingObject;
-    [SerializeField] private float _time;
+    [SerializeField] private float _waitTimeToWork;
+    [SerializeField] private PanelText _panelText;
+
     private bool _isPumping;
     private bool _isWorking;
     private AudioManager _audioManager;
@@ -26,13 +28,23 @@ public class PumpManager : Command
         }
     }
 
+    private void Pump()
+    {
+        if (_pumpingObject is Reservuar && _pumpingObject.SecondComponent != 0)
+        {
+            _panelText.SetErrorStateOnDisplay(0);
+            return;
+        }
+        _pumpingObject.LiquidComponent += Value;
+    }
+
     private IEnumerator Pumping()
     {
         while (_isPumping)
         {
             _audioManager.Play();
-            yield return new WaitForSecondsRealtime(_time);
-            _pumpingObject.LiquidComponent += Value;
+            Pump();
+            yield return new WaitForSecondsRealtime(_waitTimeToWork);
             UpdateOnDisplays();
         }
         _isWorking = false;

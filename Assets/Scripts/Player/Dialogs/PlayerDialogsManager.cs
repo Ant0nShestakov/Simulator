@@ -7,10 +7,10 @@ public class PlayerDialogsManager : MonoBehaviour
     [SerializeField] private LvLTask _tasks;
     [SerializeField] private Text _dialogText;
     [SerializeField] private float _speedText;
+    [SerializeField] private QuestGiveManager _giveManager;
+
     private string _textTask;
     private bool _isWork;
-
-    [SerializeField] private QuestGiveManager _giveManager;
 
     private IEnumerator Speaking()
     {
@@ -59,7 +59,6 @@ public class PlayerDialogsManager : MonoBehaviour
             _dialogText.gameObject.SetActive(true);
             StartCoroutine(Speaking());
         }
-
     }
 
     public void ExitDialog()
